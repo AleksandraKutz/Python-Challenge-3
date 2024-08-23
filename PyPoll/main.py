@@ -35,19 +35,28 @@ Charles_perc = (count_Charles / total_cast) * 100
 
 largest_number = max(count_Charles, count_Diana, count_Raymon)
 
-output = f"""
-Election Results
-----------------------------
-Total Votes: {total_cast}
-----------------------------
-{how_many3}: {count_Charles / total_cast * 100:.3f}% ({count_Charles})
-{how_many2}: {count_Diana / total_cast * 100:.3f}% ({count_Diana})
-{how_many}: {count_Raymon / total_cast * 100:.3f}% ({count_Raymon})
-----------------------------
-Winner: {"Charles Casper Stockham" if largest_number == count_Charles else "Diana DeGette" if largest_number == count_Diana else "Raymon Anthony Doane"}
-----------------------------
-"""
+output = (
+    "Election Results\n"
+    "----------------------------\n"
+    f"Total Votes: {total_cast}\n"
+    "----------------------------\n"
+    f"{how_many3}: {count_Charles / total_cast * 100:.3f}% ({count_Charles})\n"
+    f"{how_many2}: {count_Diana / total_cast * 100:.3f}% ({count_Diana})\n"
+    f"{how_many}: {count_Raymon / total_cast * 100:.3f}% ({count_Raymon})\n"
+    "----------------------------\n"
+)
 
-file_path = "my_codePyPoll.txt"
+if largest_number == count_Charles:
+    output += "Winner: Charles Casper Stockham\n"
+elif largest_number == count_Diana:
+    output += "Winner: Diana DeGette\n"
+else:
+    output += "Winner: Raymon Anthony Doane\n"
+
+output += "----------------------------\n"
+
+print(output)
+
+file_path = "PyPoll.txt"
 with open(file_path, "w") as file:
     file.write(output)
