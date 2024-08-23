@@ -22,7 +22,6 @@ with open(csvpath) as csvfile:
         name = row[2]
         candidates_received_votes.add(name)
 
-
         if row[2] == how_many:
             count_Raymon += 1
         if row[2] == how_many2:
@@ -30,27 +29,25 @@ with open(csvpath) as csvfile:
         if row[2] == how_many3:
             count_Charles += 1
 
+Raymon_perc = (count_Raymon / total_cast) * 100
+Diana_perc = (count_Diana / total_cast) * 100
+Charles_perc = (count_Charles / total_cast) * 100
 
-Raymon_perc = (count_Raymon/ total_cast) * 100
-Diana_perc = (count_Diana/total_cast) * 100
-Charles_perc = (count_Charles/total_cast) *100
+largest_number = max(count_Charles, count_Diana, count_Raymon)
 
-largest_number=max(count_Charles,count_Diana,count_Raymon)
+output = f"""
+Election Results
+----------------------------
+Total Votes: {total_cast}
+----------------------------
+{how_many3}: {count_Charles / total_cast * 100:.3f}% ({count_Charles})
+{how_many2}: {count_Diana / total_cast * 100:.3f}% ({count_Diana})
+{how_many}: {count_Raymon / total_cast * 100:.3f}% ({count_Raymon})
+----------------------------
+Winner: {"Charles Casper Stockham" if largest_number == count_Charles else "Diana DeGette" if largest_number == count_Diana else "Raymon Anthony Doane"}
+----------------------------
+"""
 
-print ("Election Results")
-print("----------------------------")
-print("Total Votes:", total_cast)
-print("----------------------------")
-print(f"{how_many3}: {count_Charles / total_cast * 100:.3f}% ({count_Charles})")
-print(f"{how_many2}: {count_Diana / total_cast * 100:.3f}% ({count_Diana})")
-print(f"{how_many}: {count_Raymon / total_cast * 100:.3f}% ({count_Raymon})")
-print("----------------------------")
-
-if largest_number == count_Charles:
-    print("Winner: Charles Casper Stockham")
-elif largest_number == count_Diana:
-    print("Winner: Diana DeGette")
-else:
-    print("Winner: Raymon Anthony Doane")
-
-print("----------------------------")
+file_path = "my_codePyPoll.txt"
+with open(file_path, "w") as file:
+    file.write(output)

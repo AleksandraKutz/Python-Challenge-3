@@ -36,13 +36,20 @@ with open(csvpath) as csvfile:
 
         last_profit_loss = profit_loss
 
-
 average_change = sum(monthly_changes) / len(monthly_changes)
 
-print("Financial Analysis")
-print("-------------------------------")
-print(f"Total Months: {all_months}")
-print(f"Total: ${all_profit_losses}")
-print(f"Average Change: ${average_change:.2f}")
-print(f"Greatest Increase in Profits: {greatest_increase_date} (${greatest_increase_amount})")
-print(f"Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease_amount})")
+output = (
+    "Financial Analysis\n"
+    "-------------------------------\n"
+    f"Total Months: {all_months}\n"
+    f"Total: ${all_profit_losses}\n"
+    f"Average Change: ${average_change:.2f}\n"
+    f"Greatest Increase in Profits: {greatest_increase_date} (${greatest_increase_amount})\n"
+    f"Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease_amount})\n"
+)
+
+print(output)
+
+file_path = "PyBank.txt"
+with open(file_path, "w") as file:
+    file.write(output)
